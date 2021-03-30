@@ -1,0 +1,64 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    cout << "PROGRAM RULES:" << endl;
+    cout << "1. Please do not enter more than 10 characters" << endl;
+    cout << "2. Please do not enter any numbers" << endl;
+    cout << "3. Please write the word in all lower case" << endl;
+
+    char coolString[50];
+    cout << "Enter a word\t";
+    cin >> coolString;
+
+    int fails = 0;
+    int oc = 0;
+    string fixed;
+  
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    for (int c = 0; c < strlen(coolString); c++) //strlen being used to get every character in a chararray
+    {
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        if (isdigit(coolString[c])) //isdigit being used to check if a char is a digit or not
+        {
+            fails++;
+            oc--;
+        }
+        else if (oc < 10)
+        {
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            fixed += tolower(coolString[c]); //tolower() being used to force a char to be lowercase (does nothing to punctuation or already lowercase characters
+        }
+        if (coolString[c] > 'A' && coolString[c] < 'Z')
+        {
+            fails++;
+        }
+        oc++;
+    }
+
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    int over = strlen(coolString) - 10; //strlen being used to tell the user theyre a moron
+
+    cout << "We found " << fails << " mistakes in your input." << endl;
+
+    if (over <= 0)
+    {
+        cout << "You went " << -over << " under the limit. good job!" << endl;
+    }
+    else
+    {
+        cout << "You went " << over << " over the limit. moron!" << endl << "\n";
+    }
+
+    if (fails > 0)
+    {
+        cout << "We fixed your terrible input for you youre welcome" << endl << fixed;
+    }
+    else
+    {
+        cout << "Nothing to fix here :) simply enjoy your perfect code being printed again" << endl << fixed << "\n";
+    }
+    return 232;
+}
